@@ -35,13 +35,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a href="{{ route('roles.index') }}" class="nav-link"></a>
+                            <a href="{{ route('roles.index') }}" class="nav-link">Roles</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('courses.index') }}" class="nav-link"></a>
+                            <a href="{{ route('courses.index') }}" class="nav-link">Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('chapters.index') }}" class="nav-link"></a>
+                            <a href="{{ route('chapters.index') }}" class="nav-link">Chapters</a>
                         </li>
                     </ul>
 
@@ -86,7 +86,9 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>
