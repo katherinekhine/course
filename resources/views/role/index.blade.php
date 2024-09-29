@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="my-2">Roles</h1>
+    <a href="{{ route('roles.create') }}">+ New</a>
     <table class="table table-bordered">
         <thead>
             <tr>
