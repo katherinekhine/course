@@ -12,7 +12,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return view('role.index', [
+            'roles' => Role::all()
+        ]);
     }
 
     /**
