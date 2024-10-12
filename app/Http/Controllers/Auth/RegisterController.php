@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'address' => ['required'],
             'photo' => ['required'],
-            'role_id' => ['required', 'number']
+            'role_id' => ['required', 'integer']
         ]);
     }
 
@@ -66,12 +66,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $photo_path = $data['photo']->store('profiles');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'address' => $data['address'],
-            'photo' => $data['photo']->store('public/photos'),
+            'photo' => $photo_path,
             'role_id' => $data['role_id']
         ]);
     }
