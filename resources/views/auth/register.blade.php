@@ -97,9 +97,9 @@
                                 <div class="col-md-6">
                                     <select name="role_id" id="role_id" class="form-control">
                                         <option value="">---choose role---</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Teacher</option>
-                                        <option value="3">Student</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->title }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -24,5 +24,32 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create(['title' => 'admin']);
         Role::factory()->create(['title' => 'teacher']);
         Role::factory()->create(['title' => 'student']);
+
+        User::factory()->create([
+            'email' => 'admin@gmail.com',
+            'role_id' => '1',
+        ]);
+
+        User::factory()->create([
+            'role_id' => '1',
+        ]);
+
+        User::factory()->create([
+            'email' => 'teacher@gmail.com',
+            'role_id' => '2',
+        ]);
+
+        User::factory()->count(5)->create([
+            'role_id' => '2',
+        ]);
+
+        User::factory()->create([
+            'email' => 'student@gmail.com',
+            'role_id' => '3',
+        ]);
+
+        User::factory()->count(50)->create([
+            'role_id' => '3',
+        ]);
     }
 }
