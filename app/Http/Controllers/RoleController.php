@@ -51,7 +51,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('role.create', [
+            'role' => $role
+        ]);
     }
 
     /**
@@ -59,7 +61,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+        $role->update($validatedData);
+        return redirect(route('roles.index'));
     }
 
     /**
