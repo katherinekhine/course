@@ -22,7 +22,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('courses.create');
     }
 
     /**
@@ -30,7 +30,12 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        Course::create($validated);
+        return redirect(route('courses.index'));
     }
 
     /**
@@ -46,7 +51,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        return view('courses.edit', [
+            'course' => $course
+        ]);
     }
 
     /**
@@ -54,7 +61,12 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        $course->update($validated);
+        return redirect(route('courses.index'));
     }
 
     /**
@@ -62,6 +74,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return redirect(route('courses.index'));
     }
 }
