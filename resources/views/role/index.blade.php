@@ -19,7 +19,9 @@
                     <td>{{ $role->description }}</td>
                     <td>
                         <a href="{{ route('roles.edit', ['role' => $role]) }}" class="btn btn-link">Edit</a>
-                        <form action="{{ route('roles.destroy', ['role' => $role]) }}" class="d-inline">
+                        <form action="{{ route('roles.destroy', ['role' => $role]) }}" class="d-inline" method="POST">
+                            @csrf
+                            @method('DELETE')
                             <button type="submit" class="btn btn-link">Delete</button>
                         </form>
                     </td>
