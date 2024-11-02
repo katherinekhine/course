@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('description');
+            $table->string('course_id');
+            $table->string('video');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

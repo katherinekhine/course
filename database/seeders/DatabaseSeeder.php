@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\Role;
 use App\Models\User;
@@ -60,5 +61,11 @@ class DatabaseSeeder extends Seeder
                 'title' => $c,
             ]);
         }
+
+        Chapter::factory()->count(100)->create()->each(function ($ch) {
+            $ch->course_id = array_rand(Course::pluck('id')->toArray());
+            $ch->user_id = array_rand(User::pluck('id')->toArray());
+            $ch->save();
+        });
     }
 }

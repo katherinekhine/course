@@ -17,7 +17,11 @@ class ChapterFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->sentence(),
+            'description' => fake()->sentence(20),
+            'course_id' => 1,
+            'video' => 'video.mp4',
+            'user_id' => 1,
         ];
     }
 }
