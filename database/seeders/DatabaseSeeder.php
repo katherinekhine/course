@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
 use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -51,5 +52,13 @@ class DatabaseSeeder extends Seeder
         User::factory()->count(50)->create([
             'role_id' => '3',
         ]);
+
+        $arr = ['PHP', 'Laravel', 'React', 'Vue', 'Node', 'JavaScript'];
+
+        foreach ($arr as $c) {
+            Course::factory()->create([
+                'title' => $c,
+            ]);
+        }
     }
 }
