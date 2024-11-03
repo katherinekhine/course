@@ -12,7 +12,9 @@ class ChapterController extends Controller
      */
     public function index()
     {
-        //
+        return view('chapters.index', [
+            'chapters' => Chapter::paginate(10)
+        ]);
     }
 
     /**
