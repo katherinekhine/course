@@ -63,7 +63,10 @@ class ChapterController extends Controller
      */
     public function edit(Chapter $chapter)
     {
-        //
+        return view('chapters.edit', [
+            'chapter' => $chapter,
+            'courses' => Course::all()
+        ]);
     }
 
     /**
@@ -71,7 +74,20 @@ class ChapterController extends Controller
      */
     public function update(Request $request, Chapter $chapter)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'course_id' => 'required',
+        ]);
+
+        if ($request->hasFile('video')) {
+            $video_path = $request->file('video')->store('videos');
+            $validated['video'] = $video_path;
+        }
+
+        $validated['user_id'] = Auth::id();
+        $chapter->update($validated);
+        return redirect(route('chapters.index'));
     }
 
     /**
@@ -79,6 +95,7 @@ class ChapterController extends Controller
      */
     public function destroy(Chapter $chapter)
     {
-        //
+        $chapter->delete();
+        return redirect(route('chapters.index'));
     }
 }
