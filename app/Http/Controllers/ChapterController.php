@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chapter;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChapterController extends Controller
 {
@@ -22,7 +24,9 @@ class ChapterController extends Controller
      */
     public function create()
     {
-        //
+        return view('chapters.create', [
+            'courses' => Course::all()
+        ]);
     }
 
     /**
@@ -30,7 +34,18 @@ class ChapterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'course_id' => 'required',
+            'video' => 'required'
+        ]);
+
+        $video_path = $request->file('video')->store('videos');
+        $validated['user_id'] = Auth::id();
+        $validated['video'] = $video_path;
+        Chapter::create($validated);
+        return redirect(route('chapters.index'));
     }
 
     /**
@@ -38,7 +53,9 @@ class ChapterController extends Controller
      */
     public function show(Chapter $chapter)
     {
-        return view('chapters.show')
+        return view('chapters.show', [
+            'chapter' => $chapter
+        ]);
     }
 
     /**
