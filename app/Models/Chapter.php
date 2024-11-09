@@ -16,4 +16,14 @@ class Chapter extends Model
         'video',
         'user_id',
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

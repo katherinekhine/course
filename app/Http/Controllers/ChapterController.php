@@ -38,7 +38,7 @@ class ChapterController extends Controller
      */
     public function show(Chapter $chapter)
     {
-        //
+        return view('chapters.show')
     }
 
     /**
