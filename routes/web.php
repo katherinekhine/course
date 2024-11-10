@@ -19,3 +19,4 @@ Route::resource('courses', CourseController::class);
 Route::resource('chapters', ChapterController::class);
 
 Route::get('course/{course}/register', [CourseStudentController::class, 'register'])->name('course.register');
+Route::get('course/{course}/unregister', [CourseStudentController::class, 'unregister'])->name('course.unregister');
