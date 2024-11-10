@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ChapterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
     /**
      * Display a listing of the resource.
      */
