@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseStudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function register(Course $course)
     {
         $course->students()->attach(Auth::id());
