@@ -12,6 +12,7 @@ class CourseStudentController extends Controller
     {
         $this->middleware('auth');
     }
+    
     public function register(Course $course)
     {
         $course->students()->attach(Auth::id());

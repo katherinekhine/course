@@ -11,7 +11,7 @@ class ChapterController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index']);
     }
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class ChapterController extends Controller
     public function index()
     {
         return view('chapters.index', [
-            'chapters' => Chapter::paginate(10)
+            'chapters' => Chapter::latest()->paginate(10)
         ]);
     }
 
@@ -48,8 +48,9 @@ class ChapterController extends Controller
         $video_path = $request->file('video')->store('videos');
         $validated['user_id'] = Auth::id();
         $validated['video'] = $video_path;
+
         Chapter::create($validated);
-        return redirect(route('chapters.index'));
+        return redirect(route("chapters.index"));
     }
 
     /**
@@ -67,7 +68,7 @@ class ChapterController extends Controller
      */
     public function edit(Chapter $chapter)
     {
-        return view('chapters.edit', [
+        return view('chapters.create', [
             'chapter' => $chapter,
             'courses' => Course::all()
         ]);
@@ -83,12 +84,10 @@ class ChapterController extends Controller
             'description' => 'required',
             'course_id' => 'required',
         ]);
-
-        if ($request->hasFile('video')) {
+        if($request->hasFile('video')) {
             $video_path = $request->file('video')->store('videos');
             $validated['video'] = $video_path;
         }
-
         $validated['user_id'] = Auth::id();
         $chapter->update($validated);
         return redirect(route('chapters.index'));

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -16,7 +18,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('role.index', [
+        if(Auth::user()->cannot('viewany', Role::class)) abort(403);
+        return view('role.index',[
             'roles' => Role::all()
         ]);
     }

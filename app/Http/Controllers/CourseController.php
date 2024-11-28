@@ -9,8 +9,9 @@ class CourseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index', 'show');
+        $this->middleware('auth')->except(['index', 'show']);
     }
+    
     /**
      * Display a listing of the resource.
      */
@@ -26,6 +27,7 @@ class CourseController extends Controller
      */
     public function create()
     {
+        $this->authorize('create');
         return view('courses.create');
     }
 
@@ -36,7 +38,7 @@ class CourseController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required',
-            'description' => 'required',
+            'description' => 'required'
         ]);
         Course::create($validated);
         return redirect(route('courses.index'));
@@ -59,7 +61,7 @@ class CourseController extends Controller
     {
         $this->authorize('update', $course);
 
-        return view('courses.edit', [
+        return view('courses.create', [
             'course' => $course
         ]);
     }

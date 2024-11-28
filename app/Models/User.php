@@ -48,13 +48,14 @@ class User extends Authenticatable
         ];
     }
 
-    public function courses()
+    public function courses() 
     {
-        return $this->belongsToMany(Course::class, 'course_students', 'user_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'course_student','student_id','course_id');
     }
 
     public function isAdmin()
     {
         return $this->role_id == 1;
     }
+
 }
