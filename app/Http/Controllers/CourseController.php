@@ -57,6 +57,8 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+        $this->authorize('update', $course);
+
         return view('courses.edit', [
             'course' => $course
         ]);
@@ -67,6 +69,8 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+        $this->authorize('update', $course);
+
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
