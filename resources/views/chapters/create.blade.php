@@ -2,7 +2,7 @@
 @section('content')
     <h1>{{ isset($chapter) ? 'Update Chapter' : 'New Chapter' }}</h1>
     <form action="{{ isset($chapter) ? route('chapters.update', ['chapter' => $chapter]) : route('chapters.store') }}"
-        method="POST" enctype="multipart/form-data">
+        method="post" enctype="multipart/form-data">
         @csrf
         @isset($chapter)
             @method('PUT')
@@ -26,8 +26,7 @@
             <label for="course_id">Course</label>
             <select name="course_id" id="course_id">
                 @foreach ($courses as $course)
-                    <option value="{{ $course->id }}" @@selected($course->id ==
-                        $chapter->course_id)>{{ $course->title }}</option>
+                    <option value="{{ $course->id }}" @selected($course->id == $chapter->course_id)>{{ $course->title }}</option>
                 @endforeach
             </select>
         </div>

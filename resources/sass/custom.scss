@@ -1,0 +1,39 @@
+* {
+    font-family: 'Actor', sans-serif;
+}
+
+h1 {
+    @extend .text-capitalize,
+    .mb-2,
+    .fw-bolder,
+    .text-decoration-underline,
+}
+
+main .container>a {
+    @extend .btn,
+    .btn-outline-secondary,
+    .text-capitalize,
+    .d-inline-block,
+    .mb-3;
+}
+
+table {
+    @extend .table,
+    .table-bordered,
+    .table-striped,
+    .table-primary,
+    .table-sm,
+    .align-middle;
+}
+
+table a,
+table form input,
+table form button {
+    @extend .btn,
+    .btn-outline-primary,
+    .btn-sm;
+}
+
+table form {
+    @extend .d-inline-block;
+}

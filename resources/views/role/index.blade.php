@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <h1 class="my-2">Roles</h1>
+    <h1>Roles</h1>
     <a href="{{ route('roles.create') }}">+ New</a>
-    <table class="table table-bordered">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -18,11 +18,11 @@
                     <td>{{ $role->title }}</td>
                     <td>{{ $role->description }}</td>
                     <td>
-                        <a href="{{ route('roles.edit', ['role' => $role]) }}" class="btn btn-link">Edit</a>
-                        <form action="{{ route('roles.destroy', ['role' => $role]) }}" class="d-inline" method="POST">
+                        <a href="{{ route('roles.edit', ['role' => $role]) }}">Edit</a>
+                        <form action="{{ route('roles.destroy', ['role' => $role]) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-link">Delete</button>
+                            <button type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>

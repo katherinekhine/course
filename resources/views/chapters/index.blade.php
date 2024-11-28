@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
-    <h1>All Lessons</h1>
-    <a href="{{ route('chapters.create') }}">+ New Chapter</a>
+    <h1>all lessons</h1>
+    <a href="{{ route('chapters.create') }}">+ new chapter</a>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
+                <th>title</th>
                 <th></th>
             </tr>
         </thead>
@@ -18,10 +18,10 @@
                     <td>
                         <a href="{{ route('chapters.show', ['chapter' => $chapter]) }}">Show</a>
                         <a href="{{ route('chapters.edit', ['chapter' => $chapter]) }}">Edit</a>
-                        <form action="{{ route('chapters.destroy', ['chapter' => $chapter]) }}" method="POST">
+                        <form action="{{ route('chapters.destroy', ['chapter' => $chapter]) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
+                            <input type="submit" value="Delete">
                         </form>
                     </td>
                 </tr>

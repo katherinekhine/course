@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="my-2">{{ isset($role) ? 'Update Role' : 'Create New Role' }}</h1>
-    <form action="{{ isset($role) ? route('roles.update', ['role' => $role]) : route('roles.store') }}" method="POST">
+    <form action="{{ isset($role) ? route('roles.update', ['role' => $role]) : route('roles.store') }}" method="post">
         @csrf
         @isset($role)
             @method('PUT')
         @endisset
         <div class="mb-3">
-            <label for="tilte">Title:</label>
+            <label for="title">Title:</label>
             <input type="text" name="title" id="title" class="form-control"
                 value="{{ old('title', $role->title ?? '') }}">
             @error('title')
@@ -23,10 +23,9 @@
             @enderror
         </div>
         <div class="mb-3">
-            <button class="btn btn-dark"><a href="{{ route('roles.index') }}">Back</a>
+            <button type="submit" class="btn {{ isset($role) ? 'btn-outline-info' : 'btn-outline-primary' }}">
+                {{ isset($role) ? 'Update' : 'Submit' }}
             </button>
-            <button type="submit"
-                class="btn {{ isset($role) ? 'btn-outline-info' : 'btn-outline-primary' }}">{{ isset($role) ? 'Update' : 'Submit' }}</button>
         </div>
     </form>
 @endsection
