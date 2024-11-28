@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
         Role::factory()->create(['title' => 'admin']);
         Role::factory()->create(['title' => 'teacher']);
         Role::factory()->create(['title' => 'student']);
@@ -31,41 +30,36 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'role_id' => '1',
         ]);
-
         User::factory()->create([
             'role_id' => '1',
         ]);
-
         User::factory()->create([
             'email' => 'teacher@gmail.com',
-            'role_id' => '2',
+            'role_id' => '2'
         ]);
-
-        User::factory()->count(5)->create([
-            'role_id' => '2',
+        User::factory()->count(4)->create([
+            'role_id' => '2'
         ]);
-
         User::factory()->create([
             'email' => 'student@gmail.com',
-            'role_id' => '3',
+            'role_id' => '3'
         ]);
-
         User::factory()->count(50)->create([
-            'role_id' => '3',
+            'role_id' => '3'
         ]);
 
-        $arr = ['PHP', 'Laravel', 'React', 'Vue', 'Node', 'JavaScript'];
+        $arr = ['PHP', 'Javascript', 'Python', 'C++', 'C#', 'Java'];
 
-        foreach ($arr as $c) {
+        foreach($arr as $c) {
             Course::factory()->create([
-                'title' => $c,
+                'title' => $c
             ]);
         }
 
-        Chapter::factory()->count(100)->create()->each(function ($ch) {
-            $ch->course_id = array_rand(Course::pluck('id')->toArray());
-            $ch->user_id = array_rand(User::pluck('id')->toArray());
-            $ch->save();
+        Chapter::factory()->count(100)->create()->each(function($ch){
+           $ch->course_id = array_rand(Course::pluck('id')->toArray());
+           $ch->user_id = array_rand(User::pluck('id')->toArray());
+           $ch->save();
         });
     }
 }
